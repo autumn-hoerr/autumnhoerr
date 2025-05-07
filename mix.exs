@@ -68,6 +68,11 @@ defmodule Autumnhoerr.MixProject do
         "esbuild autumnhoerr --minify",
         "sass default --no-source-map --style=compressed",
         "phx.digest"
+      ],
+      check: [
+        "format",
+        "credo",
+        "test"
       ]
     ]
   end
