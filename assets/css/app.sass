@@ -39,10 +39,12 @@ a[target='_blank']::after
     max-width: 1024px
     margin: 0 auto
     display: grid
-    grid-template-rows: var(--font-size-6) 1fr 20px
-    grid-template-columns: 150px 1fr
+    grid-template-rows: var(--font-size-4) 1fr 20px
+    grid-template-columns: 110px 1fr
     min-height: 100svh
     gap: 1rem
+    @media (min-width: $breakpoint-xsmall)
+        grid-template-rows: var(--font-size-6) 1fr 20px
     @media (min-width: $breakpoint-small)
         grid-template-rows: var(--font-size-8) 1fr 20px
 
@@ -57,11 +59,13 @@ a[target='_blank']::after
     padding: 0 0.8rem
     margin-left: -0.8rem
     font-family: var(--font-fancy)
-    font-size: var(--font-size-6)
+    font-size: var(--font-size-4)
     font-weight: 400
     color: transparent
     background-clip: text
     background-image: linear-gradient(to right, var(--key-color), $orange, var(--secondary-color))
+    @media (min-width: $breakpoint-xsmall)
+        font-size: var(--font-size-6)
     @media (min-width: $breakpoint-small)
         font-size: var(--font-size-8)
 
