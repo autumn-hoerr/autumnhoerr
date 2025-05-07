@@ -10,7 +10,5 @@ defmodule AutumnhoerrWeb.Layouts do
   """
   use AutumnhoerrWeb, :html
 
-  import AutumnhoerrWeb.Components.Navigation
-
   embed_templates "layouts/*"
 end

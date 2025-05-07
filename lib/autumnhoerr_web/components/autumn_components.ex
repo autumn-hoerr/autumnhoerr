@@ -3,6 +3,45 @@ defmodule AutumnhoerrWeb.Components do
   components... fancy
   """
   use Phoenix.Component
+  use Gettext, backend: AutumnhoerrWeb.Gettext
+
+  def nav(assigns) do
+    ~H"""
+    <nav class="nav">
+      <h2 class="nav-label">{gettext("Here:")}</h2>
+      <ol class="nav-list">
+        <li :for={item <- @nav_items} class="nav-item">
+          <.current_page_indicator :if={item.id == @current_section} />
+          <a href={item.link}>{item.label}</a>
+        </li>
+      </ol>
+      <h2 class="nav-label">{gettext("There: ")}</h2>
+      <ol class="nav-list">
+        <li class="nav-item">
+          <a target="_blank" href="https://bsky.app/profile/refringence.bsky.social">
+            {gettext("bsky")}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a target="_blank" href="https://github.com/autumn-hoerr">
+            {gettext("github")}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a target="_blank" href="https://www.linkedin.com/in/autumn-hoerr/">
+            {gettext("linkedin")}
+          </a>
+        </li>
+      </ol>
+    </nav>
+    """
+  end
+
+  defp current_page_indicator(assigns) do
+    ~H"""
+    <span class="nav-indicator" title={gettext("Current Page: ")}>❧</span>
+    """
+  end
 
   attr :image_id, :string, required: true, doc: "the cloudinary image id"
   attr :alt, :string, required: true, doc: "do it, asshole"

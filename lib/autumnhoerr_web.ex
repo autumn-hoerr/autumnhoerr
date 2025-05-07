@@ -89,6 +89,7 @@ defmodule AutumnhoerrWeb do
       import Phoenix.HTML
       # Core UI components
       import AutumnhoerrWeb.CoreComponents
+      import AutumnhoerrWeb.Components
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
