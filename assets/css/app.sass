@@ -107,12 +107,23 @@ a[target='_blank']::after
 main
     padding-top: 1rem
 
-.home
-    padding-left: 4rem
-    display: flex
-    gap: 2rem
-    img
-        object-fit: contain
-    p
-        font-size: var(--font-size-3)
-        text-align: justify
+p
+    line-height: 1.33
+    margin-bottom: 1.33rem
+
+.first-char
+    padding-top: 1.6rem
+    &::first-letter
+        font-family: var(--font-fancy)
+        font-size: var(--font-size-6)
+        line-height: 20px // :( how to get ref to value of parent?
+        color: var(--key-color)
+    
+
+.about
+    .portrait
+        max-width: 33%
+        min-width: 150px
+        float: left
+        margin-right: 1.33rem
+        margin-bottom: 1.33rem

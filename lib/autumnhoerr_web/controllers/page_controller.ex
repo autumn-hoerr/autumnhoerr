@@ -21,7 +21,7 @@ defmodule AutumnhoerrWeb.PageController do
   def about(conn, _params) do
     conn
     |> make_title("About Me")
-    |> assign(:about_image_url, Cloudex.Url.for("not-amused_fn36g8"))
+    |> assign(:about_image_url, Cloudex.Url.for("autumn-hoerr_dqzzyk", %{width: 400}))
     |> render(:about)
   end
 
