@@ -1,6 +1,13 @@
-<main>
-  <div>
-    <.flash_group flash={@flash} />
+<.flash_group flash={@flash} />
+<div class="page">
+  <header class="site-header">
+    <h1 class="nameheading">{gettext("Autumn Hoerr")}</h1>
+  </header>
+  <.nav />
+  <main>
     {@inner_content}
-  </div>
-</main>
+  </main>
+  <footer class="site-footer">
+    &copy; 2025 Autumn Hoerr
+  </footer>
+</div>

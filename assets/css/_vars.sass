@@ -1,10 +1,28 @@
+$breakpoint-small: 680px
+$breakpoint-medium: 800px
+$breakpoint-large: 1024px
+$teal: #38c6df
+$orange: #da764f
+$pink: #db2777
+  
 :root 
-  --background: #e7e7dc
-  --foreground: #2c2c2c
-
+    --background: #e7e7dc
+    --foreground: #2c2c2c
+    --key-color: #{$pink}
+    --secondary-color: #{$teal}
+    // 1.33 - https://www.modularscale.com/?1&rem&1.33
+    --font-size-1: 1rem
+    --font-size-2: 1.333rem
+    --font-size-3: 1.769rem
+    --font-size-4: 2.353rem
+    --font-size-5: 3.129rem
+    --font-size-6: 4.162rem
+    --font-size-7: 5.535rem
+    --font-size-8: 7.361rem
 
 @media (prefers-color-scheme: dark) 
-  :root 
-    --background: #2c2c2c
-    --foreground: #e7e7dc
-  
+    :root 
+        --background: #2c2c2c
+        --foreground: #e7e7dc
+        --key-color: #{$teal}
+        --secondary-color: #{$pink}

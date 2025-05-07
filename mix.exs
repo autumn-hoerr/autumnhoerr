@@ -48,7 +48,8 @@ defmodule Autumnhoerr.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:dart_sass, "~> 0.7", runtime: Mix.env() == :dev},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:cloudex, "~> 1.3.0"}
     ]
   end
 
