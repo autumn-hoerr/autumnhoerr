@@ -4,10 +4,7 @@ defmodule AutumnhoerrWeb.PageController do
   plug :put_nav_items
 
   def home(conn, _params) do
-    # The home page is often custom made,
-    # so skip the default app layout.
     conn
-    |> make_title("Home")
     |> assign(:home_image_url, Cloudex.Url.for("cover2_okous1"))
     |> render(:home)
   end
