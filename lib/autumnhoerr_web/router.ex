@@ -18,7 +18,7 @@ defmodule AutumnhoerrWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    get "/gallery", PageController, :gallery
+    live "/gallery", GalleryLive
     get "/about", PageController, :about
   end
 
