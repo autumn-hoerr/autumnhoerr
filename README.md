@@ -1,5 +1,11 @@
 # Autumnhoerr
 
+todo:
+- since I wound up using liveview anyway, put the other pages into it
+- get rid of double-nav when I do
+
+
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies

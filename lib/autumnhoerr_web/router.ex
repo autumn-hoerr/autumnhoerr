@@ -19,6 +19,7 @@ defmodule AutumnhoerrWeb.Router do
 
     get "/", PageController, :home
     live "/gallery", GalleryLive
+    live "/gallery/p/:id", GalleryLive
     get "/about", PageController, :about
   end
 
