@@ -9,43 +9,50 @@ defmodule AutumnhoerrWeb.GalleryLive do
       items: [
         %{
           id: "5125_ymoj0r",
-          alt: "alt text",
+          alt:
+            "A primarily blue and purple painting with illegible words scrawled upside down across the top and featuring a field of interconnected circles in the bottom three-quarters.",
           date: "May 2025",
           media: "acrylic medium and gouache on paper, 9x12"
         },
         %{
           id: "52225_nsdpcb",
-          alt: "alt text",
+          alt:
+            "An octogon is inscribed in the center of the painting which is split diagonally with the left half being orange and the right half blue and purple.",
           date: "May 2025",
           media: "acrylic medium and gouache on paper, 8x10"
         },
         %{
           id: "22225_a3o7uv",
-          alt: "alt text",
+          alt:
+            "An orange and purple abstract painting. Interconnected circles are inscribed in the paint and printed words are illegible underneath the field of colors.",
           date: "Feb 2025",
           media: "acrylic medium, mixed media collage, and gouache on paper, 9x12"
         },
         %{
           id: "22125_wluusv",
-          alt: "alt text",
+          alt:
+            "Orange circles and lines dominate the right two-thirds of the painting. The rest is purple, green, and blue. Illegible writing covers the space outside of the geometrical figure.",
           date: "Feb 2025",
           media: "acrylic medium and gouache on paper, 8x10"
         },
         %{
           id: "22425_kybna7",
-          alt: "alt text",
+          alt:
+            "An orange hourglass shape of circles takes the right two-thirds. Underneath the purples, blues, and greens outside the geometric figure is a checkerboard pattern",
           date: "Feb 2025",
           media: "acrylic medium, mixed media collage, and gouache on paper, 8x10"
         },
         %{
           id: "22025_conyvc",
-          alt: "alt text",
+          alt:
+            "Thirteen interconnected circles make a flower shape in the lower right of this purple, green, and blue painting. Some illegible handwriting overlaps itself above the inscribed shapes.",
           date: "Feb 2025",
           media: "acrylic medium and gouache on paper, 8x10"
         },
         %{
           id: "5325_flnecs",
-          alt: "alt text",
+          alt:
+            "An octogon is inscribed in the center of the blue and green painting. At each outer vertex a circle is scratched into the medium, making a flower shape. Within one of the petals some illegible handwriting is scratched into the medium.",
           date: "May 2025",
           media: "acrylic medium and gouache on paper, 8x10"
         }
