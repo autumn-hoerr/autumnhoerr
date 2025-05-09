@@ -50,41 +50,6 @@ defmodule AutumnhoerrWeb.GalleryLive do
           media: "acrylic medium and gouache on paper, 8x10"
         }
       ]
-    },
-    %{
-      name: "Platonic Solids 2025 Edition",
-      items: [
-        %{
-          id: "meta1-tetrahedron_2025_fpmcli",
-          alt: "alt text",
-          date: "April 2025",
-          media: "acrylic medium and gouache on paper, 8x10"
-        },
-        %{
-          id: "meta2-hexahedron_2025_w0zmoj",
-          alt: "alt text",
-          date: "April 2025",
-          media: "acrylic medium and gouache on paper, 8x10"
-        },
-        %{
-          id: "meta3-octahedron_2025_dnn54k",
-          alt: "alt text",
-          date: "April 2025",
-          media: "acrylic medium and gouache on paper, 8x10"
-        },
-        %{
-          id: "meta4-icosahedron_2025_r9wh7q",
-          alt: "alt text",
-          date: "April 2025",
-          media: "acrylic medium and gouache on paper, 8x10"
-        },
-        %{
-          id: "meta5-dodecahedron_2025_amswlj",
-          alt: "alt text",
-          date: "April 2025",
-          media: "acrylic medium and gouache on paper, 8x10"
-        }
-      ]
     }
   ]
 
@@ -94,6 +59,7 @@ defmodule AutumnhoerrWeb.GalleryLive do
       |> assign(
         # TODO: don't repeat this
         # on_mount or router plug?
+        page_title: gettext("Gallery - Autumn Hoerr"),
         open_image: nil,
         nav_items: [
           %{id: "home", label: gettext("Home"), link: ~p"/"},
@@ -180,7 +146,7 @@ defmodule AutumnhoerrWeb.GalleryLive do
 
   defp gallery(assigns) do
     ~H"""
-    <div class={"gallery gallery" <> to_string(@idx)}>
+    <div class={"gallery-index gallery" <> to_string(@idx)}>
       <h2 :if={Map.has_key?(@gallery, :name)}>{@gallery.name}</h2>
       <p :if={Map.has_key?(@gallery, :desc)}>{@gallery.desc}</p>
       <.gallery_item :for={item <- @gallery.items} item={item} />
@@ -192,8 +158,8 @@ defmodule AutumnhoerrWeb.GalleryLive do
 
   defp gallery_item(assigns) do
     ~H"""
-    <.link patch={~p"/gallery/p/#{@item.id}"}>
-      <img src={Cloudex.Url.for(@item.id, %{width: 400})} alt={@item.alt} />
+    <.link class="gallery-item" patch={~p"/gallery/p/#{@item.id}"}>
+      <img src={Cloudex.Url.for(@item.id, %{width: 300})} alt={@item.alt} />
       <p class="gallery-desc">{@item.media}, {@item.date}</p>
     </.link>
     """

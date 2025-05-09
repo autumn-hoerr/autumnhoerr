@@ -3,10 +3,12 @@
   <header class="site-header">
     <h1 class="nameheading">{gettext("Autumn Hoerr")}</h1>
   </header>
-  <.nav nav_items={@nav_items} current_section={@current_section} />
-  <main id="main" class={@current_section}>
-    {@inner_content}
-  </main>
+  <div class="content">
+    <.nav nav_items={@nav_items} current_section={@current_section} />
+    <main id="main" class={@current_section}>
+      {@inner_content}
+    </main>
+  </div>
   <footer class="site-footer">
     &copy; 2025 Autumn Hoerr
   </footer>

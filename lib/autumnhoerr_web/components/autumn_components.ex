@@ -8,31 +8,35 @@ defmodule AutumnhoerrWeb.Components do
   def nav(assigns) do
     ~H"""
     <nav class="nav">
-      <h2 class="nav-label">{gettext("Here:")}</h2>
-      <ol class="nav-list">
-        <li :for={item <- @nav_items} class="nav-item">
-          <.current_page_indicator :if={item.id == @current_section} />
-          <a href={item.link}>{item.label}</a>
-        </li>
-      </ol>
-      <h2 class="nav-label">{gettext("There: ")}</h2>
-      <ol class="nav-list">
-        <li class="nav-item">
-          <a target="_blank" href="https://bsky.app/profile/refringence.bsky.social">
-            {gettext("bsky")}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a target="_blank" href="https://github.com/autumn-hoerr">
-            {gettext("github")}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a target="_blank" href="https://www.linkedin.com/in/autumn-hoerr/">
-            {gettext("linkedin")}
-          </a>
-        </li>
-      </ol>
+      <div>
+        <h2 class="nav-label">{gettext("Here:")}</h2>
+        <ol class="nav-list">
+          <li :for={item <- @nav_items} class="nav-item">
+            <.current_page_indicator :if={item.id == @current_section} />
+            <a href={item.link}>{item.label}</a>
+          </li>
+        </ol>
+      </div>
+      <div>
+        <h2 class="nav-label">{gettext("There: ")}</h2>
+        <ol class="nav-list">
+          <li class="nav-item">
+            <a target="_blank" href="https://bsky.app/profile/refringence.bsky.social">
+              {gettext("bsky")}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a target="_blank" href="https://github.com/autumn-hoerr">
+              {gettext("github")}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a target="_blank" href="https://www.linkedin.com/in/autumn-hoerr/">
+              {gettext("linkedin")}
+            </a>
+          </li>
+        </ol>
+      </div>
     </nav>
     """
   end

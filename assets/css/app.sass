@@ -47,17 +47,15 @@ a[target='_blank']::after
     max-width: 1024px
     margin: 0 auto
     display: grid
-    grid-template-rows: var(--font-size-4) 1fr 20px
-    grid-template-columns: 110px 1fr
+    grid-template-rows: var(--font-size-4) 1fr 50px
     min-height: 100svh
     gap: 1rem
     @media (min-width: $breakpoint-xsmall)
-        grid-template-rows: var(--font-size-6) 1fr 20px
+        grid-template-rows: var(--font-size-6) 1fr 50px
     @media (min-width: $breakpoint-small)
-        grid-template-rows: var(--font-size-8) 1fr 20px
+        grid-template-rows: var(--font-size-8) 1fr 50px
 
 .site-header
-    grid-column: 1 / 3
     border-bottom: 1px solid hsl(from var(--key-color) h s l / 0.2)
     margin-bottom: 0.55rem
     position: relative
@@ -78,7 +76,15 @@ a[target='_blank']::after
         font-size: var(--font-size-8)
 
 .nav
-    text-align: right
+    display: flex
+    flex-direction: column
+    gap: 1.33rem
+    justify-content: space-between
+    @media (min-width: $breakpoint-xsmall)
+        flex-direction: row
+    @media (min-width: $breakpoint-small)
+        display: block
+        text-align: right
 
 .nav-label
     color: hsl(from var(--foreground) h s l / 0.55)
@@ -87,8 +93,12 @@ a[target='_blank']::after
     margin-top: 1rem
 
 .nav-list
+    display: flex
+    gap: 1rem
     list-style: none
     line-height: 1.5rem
+    @media (min-width: $breakpoint-small)
+        display: block
 
 .nav-item
     display: flex
@@ -100,9 +110,16 @@ a[target='_blank']::after
 
 
 .site-footer
-    grid-column: 1 / 3
-    text-align: center
-    opacity: 0.5
+    border-top: 1px solid hsl(from var(--key-color) h s l / 0.2)
+    text-align: right
+    padding: 1.33rem 0
+    color: hsl(from currentColor h s l / 0.66)
+
+.content
+    @media(min-width: $breakpoint-small)
+        display: grid
+        gap: 1rem
+        grid-template-columns: 150px 1fr
 
 #main
     position: relative
@@ -131,11 +148,23 @@ p
 
 .about
     .portrait
-        max-width: 33%
-        min-width: 150px
-        float: left
-        margin-right: 1.33rem
+        max-width: 100%
         margin-bottom: 1.33rem
+        @media (min-width: $breakpoint-xsmall)
+            max-width: 33%
+            min-width: 150px
+            float: left
+            margin-right: 1.33rem
+            
+.gallery-index
+    display: flex
+    flex-wrap: wrap
+    gap: 2%
+
+.gallery-item
+    flex: 0 0 49%
+    img
+        min-width: 100%
 
 .detail
     display: flex
@@ -144,20 +173,6 @@ p
 
 .lg-img
     max-width: 100%
-    
+
 .gallery-desc
     font-size: var(--font-size-0)
-
-.modal-screen
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    background: rgba(0,0,0, 0.75)
-
-.modal-window
-    background: var(--background)
-    position: absolute
-    top: 20%
-    left: calc(50% - 300px)
