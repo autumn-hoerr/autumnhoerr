@@ -8,6 +8,27 @@ defmodule AutumnhoerrWeb.GalleryLive do
     %{
       items: [
         %{
+          id: "22825_xxapey",
+          alt:
+            "A dark pattern of circles and lines bisects a heavily textured green and blue background. Illegible writing covers the bottom",
+          date: "Feb 2025",
+          media: "acrylic medium and gouache on paper, 9x12"
+        },
+        %{
+          id: "image_eeolgc",
+          alt:
+            "a flower of 13 interconnected circles sits on a red, orange, and purple field of texture. A triangle shape looms in the background with more handwriting",
+          date: "June 2025",
+          media: "acrylic medium and gouache on paper, 8x10"
+        },
+        %{
+          id: "imag3e_glxth8",
+          alt:
+            "A blue and purple colorfield with a darker halo surrounding a LaMoyne star. A circle of handwriting surrounds the quilt square and 4 circles are inscribed through the center.",
+          date: "June 2025",
+          media: "acrylic medium and gouache on paper, 8x10"
+        },
+        %{
           id: "5125_ymoj0r",
           alt:
             "A primarily blue and purple painting with illegible words scrawled upside down across the top and featuring a field of interconnected circles in the bottom three-quarters.",
@@ -96,7 +117,11 @@ defmodule AutumnhoerrWeb.GalleryLive do
 
   def render(%{open_image: nil} = assigns) do
     ~H"""
-    <.gallery :for={{gallery, idx} <- Enum.with_index(@galleries, 1)} gallery={gallery} idx={idx} />
+    <.gallery
+      :for={{gallery, idx} <- @galleries |> Enum.reverse() |> Enum.with_index(1)}
+      gallery={gallery}
+      idx={idx}
+    />
     """
   end
 
