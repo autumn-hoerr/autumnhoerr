@@ -45,11 +45,11 @@ defmodule Autumnhoerr.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
-      {:dns_cluster, "~> 0.1.1"},
+      {:dns_cluster, "~> 0.1.3"},
       {:bandit, "~> 1.5"},
       {:dart_sass, "~> 0.7", runtime: Mix.env() == :dev},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:cloudex, "~> 1.3.0"}
+      {:cloudex, "~> 1.4.1"}
     ]
   end
 
