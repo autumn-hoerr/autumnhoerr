@@ -8,6 +8,19 @@ defmodule AutumnhoerrWeb.GalleryLive do
     %{
       items: [
         %{
+          id: "Scan_20250817_2_zkwi9i",
+          alt:
+            "Two large circles intersect on a multicolored field with writing radiating from a circle of writing in the center.",
+          date: "July 2025",
+          media: "acrylic medium and gouache on paper, 9x12"
+        },
+        %{
+          id: "Scan_20250817_3_qealfa",
+          alt: "A rhodonea curve on a red, orange, and purple background",
+          date: "July 2025",
+          media: "acrylic medium and gouache on paper, 9x12"
+        },
+        %{
           id: "22825_xxapey",
           alt:
             "A dark pattern of circles and lines bisects a heavily textured green and blue background. Illegible writing covers the bottom",
