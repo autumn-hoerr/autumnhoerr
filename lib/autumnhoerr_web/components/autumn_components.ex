@@ -21,6 +21,11 @@ defmodule AutumnhoerrWeb.Components do
         <h2 class="nav-label">{gettext("There: ")}</h2>
         <ol class="nav-list">
           <li class="nav-item">
+            <a target="_blank" href="https://www.instagram.com/autumn.hoerr.art/">
+              {gettext("instagram")}
+            </a>
+          </li>
+          <li class="nav-item">
             <a target="_blank" href="https://bsky.app/profile/autumnhoerr.com">
               {gettext("bsky")}
             </a>
