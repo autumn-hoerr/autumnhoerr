@@ -60,9 +60,9 @@ config :cloudex,
   secret: System.get_env("CLOUDEX_SECRET"),
   cloud_name: System.get_env("CLOUDEX_CLOUD_NAME")
 
-config :lastfm,
-  api_key: System.get_env("LASTFM_API_KEY"),
-  secret: System.get_env("LASTFM_SECRET")
+config :autumnhoerr,
+  lastfm_api_key: System.get_env("LASTFM_API_KEY"),
+  lastfm_secret: System.get_env("LASTFM_SECRET")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

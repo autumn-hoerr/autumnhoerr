@@ -8,6 +8,50 @@ defmodule AutumnhoerrWeb.GalleryLive do
     %{
       items: [
         %{
+          id: "IMG_0212_p43zqh",
+          alt:
+            "A drawing of a black cat sitting on a table with a pile of books behind them in grayscale",
+          date: "July 2026",
+          media: "digital procreate drawing from personal photo"
+        },
+        %{
+          id: "IMG_0208_fyagaf",
+          alt: "A drawing of a german shephard smiling in grayscale",
+          date: "June 2026",
+          media: "digital procreate drawing from personal photo"
+        },
+        %{
+          id: "IMG_0194_y2t166",
+          alt: "A drawing of a cat bust in grayscale",
+          date: "June 2026",
+          media: "digital procreate drawing from personal photo"
+        },
+        %{
+          id: "IMG_0159_xe8lky",
+          alt: "A drawing of a pitbull smiling in grayscale",
+          date: "June 2026",
+          media: "digital procreate drawing from personal photo"
+        },
+        %{
+          id: "IMG_0148_lsawvs",
+          alt: "A drawing of light shining through lemons on a cutting board done in grayscale",
+          date: "May 2026",
+          media:
+            "digital procreate drawing from reference photo by Cristina Anne Costello on Unsplash"
+        },
+        %{
+          id: "IMG_0142_uwhnck",
+          alt: "two pears on a table cloth done in grayscale",
+          date: "May 2026",
+          media: "digital procreate drawing from reference photo by Olesia Bahrii on Unsplash"
+        },
+        %{
+          id: "IMG_0143_tixmle",
+          alt: "two white jugs on a table cloth done in grayscale",
+          date: "May 2026",
+          media: "digital procreate drawing from reference photo by Mary Skrynnikova on Unsplash"
+        },
+        %{
           id: "Scan_20250817_2_zkwi9i",
           alt:
             "Two large circles intersect on a multicolored field with writing radiating from a circle of writing in the center.",
