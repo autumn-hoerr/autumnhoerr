@@ -40,6 +40,11 @@ defmodule AutumnhoerrWeb.Components do
               {gettext("linkedin")}
             </a>
           </li>
+          <li class="nav-item">
+            <a target="_blank" href="https://www.last.fm/user/refringence">
+              {gettext("last.fm")}
+            </a>
+          </li>
         </ol>
       </div>
     </nav>
