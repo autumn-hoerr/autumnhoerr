@@ -194,8 +194,8 @@ defmodule AutumnhoerrWeb.GalleryLive do
       <img
         class="lg-img"
         alt={@img.alt}
-        src={Cloudex.Url.for(@img.id, %{width: 800})}
-        srcset={Cloudex.Url.for(@img.id, %{width: 800}) <> " 1x, " <> Cloudex.Url.for(@img.id, %{width: 1600}) <> " 2x"}
+        src={Cloudex.Url.for(@img.id, %{width: 1000})}
+        srcset={Cloudex.Url.for(@img.id, %{width: 1000}) <> " 1x, " <> Cloudex.Url.for(@img.id, %{width: 2000}) <> " 2x"}
       />
       <p>{@img.media}, {@img.date}</p>
     </div>
