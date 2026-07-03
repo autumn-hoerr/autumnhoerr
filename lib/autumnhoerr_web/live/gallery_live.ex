@@ -249,7 +249,11 @@ defmodule AutumnhoerrWeb.GalleryLive do
   defp gallery_item(assigns) do
     ~H"""
     <.link class="gallery-item" patch={~p"/gallery/p/#{@item.id}"}>
-      <img src={Cloudex.Url.for(@item.id, %{width: 300})} alt={@item.alt} />
+      <img
+        src={Cloudex.Url.for(@item.id, %{width: 300})}
+        alt={@item.alt}
+        srcset={Cloudex.Url.for(@item.id, %{width: 300}) <> " 1x, " <> Cloudex.Url.for(@item.id, %{width: 600}) <> " 2x"}
+      />
       <p class="gallery-desc">{@item.media}, {@item.date}</p>
     </.link>
     """
