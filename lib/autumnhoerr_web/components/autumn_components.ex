@@ -13,7 +13,7 @@ defmodule AutumnhoerrWeb.Components do
         <ol class="nav-list">
           <li :for={item <- @nav_items} class="nav-item">
             <.current_page_indicator :if={item.id == @current_section} />
-            <a href={item.link}>{item.label}</a>
+            <.link patch={item.link}>{item.label}</.link>
           </li>
         </ol>
       </div>

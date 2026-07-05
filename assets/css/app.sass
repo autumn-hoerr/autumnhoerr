@@ -51,9 +51,9 @@ a[target='_blank']::after
     min-height: 100svh
     gap: 1rem
     @media (min-width: $breakpoint-xsmall)
-        grid-template-rows: var(--font-size-6) 1fr 50px
+        grid-template-rows: var(--font-size-6) 1fr 100px
     @media (min-width: $breakpoint-small)
-        grid-template-rows: var(--font-size-8) 1fr 50px
+        grid-template-rows: var(--font-size-8) 1fr 100px
 
 .site-header
     border-bottom: 1px solid hsl(from var(--key-color) h s l / 0.2)
@@ -112,7 +112,7 @@ a[target='_blank']::after
 .site-footer
     border-top: 1px solid hsl(from var(--key-color) h s l / 0.2)
     text-align: right
-    padding: 1.33rem 0
+    padding: 1.33rem 0 2.66rem 0
     color: hsl(from currentColor h s l / 0.66)
 
 .content
