@@ -23,6 +23,7 @@ config :autumnhoerr, AutumnhoerrWeb.Endpoint,
 
 config :phoenix_page_meta,
   site_name: "Autumn Hoerr",
+  base_url: "https://autumnhoerr.com",
   description:
     "Autumn Hoerr is a software engineer and artist (among many other things) based in Wilmington, NC"
 
