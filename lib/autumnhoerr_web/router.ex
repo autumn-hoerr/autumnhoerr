@@ -17,10 +17,12 @@ defmodule AutumnhoerrWeb.Router do
   scope "/", AutumnhoerrWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
-    live "/gallery", GalleryLive
-    live "/gallery/p/:id", GalleryLive
-    get "/about", PageController, :about
+    live_session :public, on_mount: AutumnhoerrWeb.SharedMount do
+      live "/", HomeLive
+      live "/about", AboutLive
+      live "/gallery", GalleryLive
+      live "/gallery/p/:id", GalleryLive
+    end
   end
 
   # Other scopes may use custom stacks.
