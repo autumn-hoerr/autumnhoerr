@@ -21,6 +21,11 @@ config :autumnhoerr, AutumnhoerrWeb.Endpoint,
   pubsub_server: Autumnhoerr.PubSub,
   live_view: [signing_salt: "BbrS54ah"]
 
+config :phoenix_page_meta,
+  site_name: "Autumn Hoerr",
+  description:
+    "Autumn Hoerr is a software engineer and artist (among many other things) based in Wilmington, NC"
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

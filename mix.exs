@@ -49,7 +49,9 @@ defmodule Autumnhoerr.MixProject do
       {:bandit, "~> 1.5"},
       {:dart_sass, "~> 0.7", runtime: Mix.env() == :dev},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:cloudex, "~> 1.4.1"}
+      {:cloudex, "~> 1.4.1"},
+      {:phoenix_page_meta, "~> 0.2"},
+      {:phoenix_press, "~> 0.2.0"}
     ]
   end
 

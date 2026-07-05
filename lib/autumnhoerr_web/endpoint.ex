@@ -48,5 +48,10 @@ defmodule AutumnhoerrWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+
+  plug PhoenixPress.Plug,
+    sitemap: AutumnhoerrWeb.Sitemap,
+    robots: AutumnhoerrWeb.Robots
+
   plug AutumnhoerrWeb.Router
 end

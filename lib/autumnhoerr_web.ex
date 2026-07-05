@@ -55,6 +55,9 @@ defmodule AutumnhoerrWeb do
       use Phoenix.LiveView,
         layout: {AutumnhoerrWeb.Layouts, :app}
 
+      @behaviour PhoenixPageMeta.LiveView
+      import PhoenixPageMeta.LiveView, only: [assign_page_meta: 1]
+
       unquote(html_helpers())
     end
   end

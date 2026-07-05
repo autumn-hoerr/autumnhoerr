@@ -3,18 +3,23 @@ defmodule AutumnhoerrWeb.GalleryLive do
   gallery stuff
   """
   use AutumnhoerrWeb, :live_view
+  @impl PhoenixPageMeta.LiveView
+  def page_meta(_socket, _action) do
+    %PhoenixPageMeta.PageMeta{title: gettext("Gallery - Autumn Hoerr"), path: "/gallery"}
+  end
 
+  @impl Phoenix.LiveView
   def mount(params, _session, socket) do
     socket =
       socket
       |> assign(
-        page_title: gettext("Gallery - Autumn Hoerr"),
         current_section: "gallery",
         open_image: nil,
         # TODO: get this from cloudinary
         galleries: AutumnhoerrWeb.GalleryData.gallery_data()
       )
       |> maybe_assign_image_id(Map.get(params, "id"))
+      |> assign_page_meta()
 
     {:ok, socket}
   end
@@ -31,6 +36,7 @@ defmodule AutumnhoerrWeb.GalleryLive do
       else: socket
   end
 
+  @impl Phoenix.LiveView
   def render(%{open_image: nil} = assigns) do
     ~H"""
     <.gallery
@@ -61,6 +67,7 @@ defmodule AutumnhoerrWeb.GalleryLive do
     """
   end
 
+  @impl Phoenix.LiveView
   def handle_params(params, _uri, socket) do
     socket =
       maybe_assign_image_id(socket, Map.get(params, "id"))

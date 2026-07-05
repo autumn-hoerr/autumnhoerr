@@ -4,17 +4,22 @@ defmodule AutumnhoerrWeb.AboutLive do
   """
   use AutumnhoerrWeb, :live_view
 
+  @impl PhoenixPageMeta.LiveView
+  def page_meta(_socket, _action) do
+    %PhoenixPageMeta.PageMeta{title: gettext("About Me - Autumn Hoerr"), path: "/about"}
+  end
+
+  @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
     socket =
       socket
-      |> assign(
-        page_title: gettext("About Me - Autumn Hoerr"),
-        current_section: "about"
-      )
+      |> assign(current_section: "about")
+      |> assign_page_meta()
 
     {:ok, socket}
   end
 
+  @impl Phoenix.LiveView
   def render(assigns) do
     ~H"""
     <img class="portrait" src={Cloudex.Url.for("autumn-hoerr_dqzzyk", %{width: 400})} />
