@@ -7,6 +7,36 @@ defmodule AutumnhoerrWeb.GalleryData do
     %{
       items: [
         %{
+          id: "IMG_0280_qvsmxd",
+          alt: "A self-portrait of the artist. A trans woman with shoulder length hair on a very dark background. ",
+          date: "August 2026",
+          media: "digital procreate drawing from personal photo"
+        },
+        %{
+          id: "IMG_0264_brseeq",
+          alt: "a drawing of a cat lying on a bed from level with the bed",
+          date: "July 2026",
+          media: "digital procreate drawing from personal photo"
+        },
+        %{
+          id: "IMG_0315_numpdi",
+          alt: "a drawing of a bust of a black lab",
+          date: "September 2026",
+          media: "digital procreate drawing from personal photo"
+        },
+        %{
+          id: "river_dtmljw",
+          alt: "a drawing of a bust of a small white dog",
+          date: "August 2026",
+          media: "digital procreate drawing from personal photo"
+        },
+        %{
+          id: "bait_iyidqh",
+          alt: "a drawing of a bust of a corgi",
+          date: "May 2026",
+          media: "digital procreate drawing from personal photo"
+        },
+        %{
           id: "IMG_0212_p43zqh",
           alt:
             "A drawing of a black cat sitting on a table with a pile of books behind them in grayscale",
