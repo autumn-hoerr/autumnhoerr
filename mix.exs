@@ -32,24 +32,23 @@ defmodule Autumnhoerr.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.18"},
+      {:phoenix, "~> 1.8"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 1.0.0"},
+      {:phoenix_live_view, "~> 1.2"},
       {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.8.3"},
+      {:phoenix_live_dashboard, "~> 0.9"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.5"},
       {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.26"},
+      {:gettext, "~> 1.0"},
       {:jason, "~> 1.2"},
-      {:dns_cluster, "~> 0.1.3"},
+      {:dns_cluster, "~> 0.3"},
       {:bandit, "~> 1.5"},
       {:dart_sass, "~> 0.7", runtime: Mix.env() == :dev},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:cloudex, "~> 1.4.1"},
       {:phoenix_page_meta, "~> 0.2"},
       {:phoenix_press, "~> 0.2.0"}
     ]

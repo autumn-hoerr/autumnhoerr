@@ -61,12 +61,8 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :cloudex,
-  api_key: System.get_env("CLOUDEX_API_KEY"),
-  secret: System.get_env("CLOUDEX_SECRET"),
-  cloud_name: System.get_env("CLOUDEX_CLOUD_NAME")
-
 config :autumnhoerr,
+  cloudinary_cloud_name: System.get_env("CLOUDEX_CLOUD_NAME"),
   lastfm_api_key: System.get_env("LASTFM_API_KEY"),
   lastfm_secret: System.get_env("LASTFM_SECRET")
 

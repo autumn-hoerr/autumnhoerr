@@ -22,7 +22,7 @@ defmodule AutumnhoerrWeb.AboutLive do
   @impl Phoenix.LiveView
   def render(assigns) do
     ~H"""
-    <img class="portrait" src={Cloudex.Url.for("autumn-hoerr_dqzzyk", %{width: 400})} />
+    <img class="portrait" src={Autumnhoerr.Cloudinary.url("autumn-hoerr_dqzzyk", %{width: 400})} />
     <p class="first-char">
       When someone inevitably has to put some remarks together after I die I hope they lead off with "She was always so curious." I make a paycheck as a software developer, but have also had the good fortune to be a parent, friend, artist, maker, musician, amateur blacksmith, scuba diver, poet, carpenter, and so many other things over the years. I love collecting new information, hobbies, and experiences.
     </p>

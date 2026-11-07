@@ -59,8 +59,8 @@ defmodule AutumnhoerrWeb.GalleryLive do
       <img
         class="lg-img"
         alt={@img.alt}
-        src={Cloudex.Url.for(@img.id, %{width: 1000})}
-        srcset={Cloudex.Url.for(@img.id, %{width: 1000}) <> " 1x, " <> Cloudex.Url.for(@img.id, %{width: 2000}) <> " 2x"}
+        src={Autumnhoerr.Cloudinary.url(@img.id, %{width: 1000})}
+        srcset={Autumnhoerr.Cloudinary.url(@img.id, %{width: 1000}) <> " 1x, " <> Autumnhoerr.Cloudinary.url(@img.id, %{width: 2000}) <> " 2x"}
       />
       <p>{@img.media}, {@img.date}</p>
     </div>
@@ -116,9 +116,9 @@ defmodule AutumnhoerrWeb.GalleryLive do
     ~H"""
     <.link class="gallery-item" patch={~p"/gallery/p/#{@item.id}"}>
       <img
-        src={Cloudex.Url.for(@item.id, %{width: 600})}
+        src={Autumnhoerr.Cloudinary.url(@item.id, %{width: 600})}
         alt={@item.alt}
-        srcset={Cloudex.Url.for(@item.id, %{width: 600}) <> " 1x, " <> Cloudex.Url.for(@item.id, %{width: 1200}) <> " 2x"}
+        srcset={Autumnhoerr.Cloudinary.url(@item.id, %{width: 600}) <> " 1x, " <> Autumnhoerr.Cloudinary.url(@item.id, %{width: 1200}) <> " 2x"}
       />
       <p class="gallery-desc">{@item.media}, {@item.date}</p>
     </.link>

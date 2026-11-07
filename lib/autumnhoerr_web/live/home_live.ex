@@ -21,7 +21,7 @@ defmodule AutumnhoerrWeb.HomeLive do
   @impl Phoenix.LiveView
   def render(assigns) do
     ~H"""
-    <img style="max-width: 100%;" src={Cloudex.Url.for("cover2_okous1")} />
+    <img style="max-width: 100%;" src={Autumnhoerr.Cloudinary.url("cover2_okous1")} />
     """
   end
 end
