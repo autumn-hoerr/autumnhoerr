@@ -30,10 +30,63 @@ let liveSocket = new LiveSocket("/live", Socket, {
 
 // Show progress bar on live navigation and form submits
 topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
-window.addEventListener("phx:page-loading-start", _info => topbar.show(300))
-window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
+window.addEventListener("phx:page-loading-start", ({detail}) => {
+  topbar.show(300)
+  rememberFocus(detail.kind)
+})
+window.addEventListener("phx:page-loading-stop", ({detail}) => {
+  topbar.hide()
+  manageNavigationFocus(detail.kind)
+})
 
-// connect if there are any LiveViews on the page
+// LiveView swaps content without a page load, so screen readers and keyboard
+// users get no cue that anything changed. Mimic a page load when navigating
+// to a new view, and announce in-place updates (pagination, newer/older).
+let focusAfterMount = false
+let focusedIdBeforePatch = null
+
+function rememberFocus(kind) {
+  if (kind === "patch") focusedIdBeforePatch = document.activeElement?.id || null
+}
+
+function manageNavigationFocus(kind) {
+  if (kind === "redirect") {
+    // the old view is gone at this point; the new one fires "initial" once mounted
+    focusAfterMount = true
+    return
+  }
+
+  const main = document.getElementById("main")
+  if (!main) return
+
+  if (kind === "initial" && focusAfterMount) {
+    focusAfterMount = false
+    main.focus({preventScroll: true})
+  } else if (kind === "patch") {
+    restoreFocus(main)
+    // the title may not have updated yet, so views can supply the message:
+    // data-route-announce="message", or an empty attribute to read the element's text
+    const el = main.querySelector("[data-route-announce]")
+    announce(el?.dataset.routeAnnounce || el?.textContent.trim() || document.title)
+  }
+}
+
+// keep focus on e.g. the "Older" link so it can be pressed again; if the
+// update replaced it, refocus it by id, or fall back to the main content
+function restoreFocus(main) {
+  if (document.activeElement && document.activeElement !== document.body) return
+  const previous = focusedIdBeforePatch && document.getElementById(focusedIdBeforePatch)
+  ;(previous || main).focus({preventScroll: true})
+}
+
+function announce(message) {
+  const region = document.getElementById("route-announcer")
+  if (!region) return
+  region.textContent = ""
+  // a separate frame so identical consecutive messages are re-announced
+  requestAnimationFrame(() => { region.textContent = message })
+}
+
 liveSocket.connect()
 
 // expose liveSocket on window for web console debug logs and latency simulation:

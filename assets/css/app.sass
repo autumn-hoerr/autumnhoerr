@@ -36,8 +36,26 @@ a
     color: inherit
     text-decoration: none
 
+// hidden until focused with the keyboard
+.skip-link
+    position: absolute
+    top: 0.5rem
+    left: 1rem
+    z-index: 10
+    padding: 0.5rem 0.75rem
+    background: var(--background)
+    border: 1px solid var(--key-color)
+    translate: 0 calc(-100% - 1rem)
+    &:focus
+        translate: 0
+
+// focused programmatically (skip link, live navigation); not interactive
+#main:focus
+    outline: none
+
 a[target='_blank']::after
-    content: "\2197\FE0E"
+    // empty alt text: decorative, the link says "(opens in new tab)" itself
+    content: "\2197\FE0E" / ""
     color: hsl(from currentColor h s l / 0.5)
     padding-left: 0.15rem
 
@@ -85,35 +103,124 @@ a[target='_blank']::after
     @media (min-width: $breakpoint-small)
         display: block
         text-align: right
+    // side by side: keep Home/Gallery/About on one row and let the
+    // external links wrap instead
+    > div:first-child
+        flex-shrink: 0
 
 .nav-label
-    color: hsl(from var(--foreground) h s l / 0.55)
+    // 0.7 keeps the small uppercase label at >= 4.5:1 contrast
+    color: hsl(from var(--foreground) h s l / 0.7)
     text-transform: uppercase
     font-size: 12px
     margin-top: 1rem
 
 .nav-list
     display: flex
-    gap: 1rem
+    // wrap whole links onto a new row rather than squeezing them; nowrap
+    // keeps the external-link arrow attached to its word
+    flex-wrap: wrap
+    gap: 0 1rem
     list-style: none
     line-height: 1.5rem
+    a
+        white-space: nowrap
     @media (min-width: $breakpoint-small)
         display: block
 
-.nav-item
+.nav-item,
+.nav-item-row,
+.nav-subitem
     display: flex
     justify-content: flex-end
     gap: 0.33rem
-    transition: opacity 100ms ease-in
-    &:hover
-        opacity: 0.75
+    a
+        transition: opacity 100ms ease-in
+        &:hover
+            opacity: 0.75
 
+// on mobile: a two-column grid so "Gallery" and its sub-list share a
+// left edge whether or not the ❧ indicator is showing in the first column
+.nav-item-parent
+    display: grid
+    grid-template-columns: auto auto
+    .nav-item-row
+        display: contents
+    .nav-indicator
+        grid-column: 1
+        margin-right: 0.33rem
+    .nav-item-row > a,
+    .nav-sublist
+        grid-column: 2
+    // don't let the (wider) sub-list stretch the item and push "About" away;
+    // it just overflows into the empty space below the top-level row
+    .nav-sublist
+        contain: inline-size
+    @media (min-width: $breakpoint-small)
+        display: flex
+        flex-direction: column
+        gap: 0
+        .nav-item-row
+            display: flex
+        .nav-sublist
+            contain: none
+        .nav-indicator
+            margin-right: 0
+
+// collections nested under Gallery: smaller, muted, hung off a rule on the
+// same side as the text alignment (left on mobile, right on desktop)
+.nav-sublist
+    --nav-rule-color: color-mix(in srgb, var(--key-color) 45%, var(--background))
+    --nav-rule-gap: 0.6rem
+    list-style: none
+    font-size: var(--font-size-0)
+    // 24px rows: the WCAG 2.2 minimum touch-target height
+    line-height: 1.5rem
+    margin: 0.15rem 0 0.25rem 0
+    padding-left: var(--nav-rule-gap)
+    border-left: 1px solid var(--nav-rule-color)
+    color: hsl(from var(--foreground) h s l / 0.75)
+    @media (min-width: $breakpoint-small)
+        margin: 0.15rem 0.2rem 0.4rem 0
+        padding-left: 0
+        padding-right: var(--nav-rule-gap)
+        border-left: none
+        border-right: 1px solid var(--nav-rule-color)
+
+.nav-item-row,
+.nav-subitem
+    justify-content: flex-start
+    @media (min-width: $breakpoint-small)
+        justify-content: flex-end
+
+.nav-subitem
+    position: relative
+    // "page" on the collection itself, "true" on artworks within it
+    a[aria-current]
+        color: var(--foreground)
+        // triangle with its base flush against the rule, pointing at the item
+        &::before
+            --size: 6px
+            content: ""
+            position: absolute
+            top: 50%
+            left: calc(-1 * var(--nav-rule-gap))
+            width: var(--size)
+            height: calc(var(--size) * 1.5)
+            translate: 0 -50%
+            background: var(--nav-rule-color)
+            clip-path: polygon(0 0, 100% 50%, 0 100%)
+            @media (min-width: $breakpoint-small)
+                left: auto
+                right: calc(-1 * var(--nav-rule-gap))
+                clip-path: polygon(100% 0, 0 50%, 100% 100%)
 
 .site-footer
     border-top: 1px solid hsl(from var(--key-color) h s l / 0.2)
     text-align: right
     padding: 1.33rem 0 2.66rem 0
-    color: hsl(from currentColor h s l / 0.66)
+    // 0.7 keeps it at >= 4.5:1 contrast
+    color: hsl(from currentColor h s l / 0.7)
 
 .content
     @media(min-width: $breakpoint-small)

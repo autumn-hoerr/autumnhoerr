@@ -111,6 +111,10 @@ defmodule Autumnhoerr.GalleryTest do
   end
 
   test "list_collections/0 follows config order" do
-    assert Enum.map(Gallery.list_collections(), & &1.slug) == ["drawings", "paintings", "calligraphy"]
+    assert Enum.map(Gallery.list_collections(), & &1.slug) == [
+             "drawings",
+             "paintings",
+             "calligraphy"
+           ]
   end
 end

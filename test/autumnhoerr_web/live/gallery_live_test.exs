@@ -103,6 +103,75 @@ defmodule AutumnhoerrWeb.GalleryLiveTest do
     end
   end
 
+  describe "nav" do
+    test "lists every collection under Gallery", %{conn: conn} do
+      {:ok, view, _html} = live(conn, ~p"/about")
+
+      for slug <- ~w(drawings paintings calligraphy) do
+        assert has_element?(view, ~s|.nav-item-parent .nav-sublist a[href="/gallery/#{slug}"]|)
+      end
+
+      refute has_element?(view, ~s|.nav-sublist a[aria-current]|)
+    end
+
+    test "marks the current collection, including on artwork pages", %{conn: conn} do
+      Cache.put("drawings", artworks("drawings", 1))
+
+      {:ok, view, _html} = live(conn, ~p"/gallery/paintings")
+      assert has_element?(view, ~s|.nav-sublist a[aria-current="page"]|, "Paintings")
+      assert has_element?(view, ~s|.nav-item-row a[aria-current="true"]|, "Gallery")
+      assert has_element?(view, ".nav-item-parent > .nav-item-row .nav-indicator")
+      refute has_element?(view, ".nav-sublist .nav-indicator")
+
+      # inside a collection, not on its page: "true" rather than "page"
+      {:ok, view, _html} = live(conn, ~p"/gallery/drawings/drawings_1")
+      assert has_element?(view, ~s|.nav-sublist a[aria-current="true"]|, "Drawings")
+      refute has_element?(view, ~s|nav.nav a[aria-current="page"]|)
+
+      {:ok, view, _html} = live(conn, ~p"/gallery")
+      refute has_element?(view, ~s|.nav-sublist a[aria-current]|)
+      assert has_element?(view, ~s|.nav-item-row a[aria-current="page"]|, "Gallery")
+      assert has_element?(view, ".nav-item-parent > .nav-item-row .nav-indicator")
+    end
+
+    test "is labelled, hides the decorative indicator, and flags new tabs", %{conn: conn} do
+      {:ok, view, _html} = live(conn, ~p"/about")
+
+      assert has_element?(view, ~s|nav.nav[aria-label="Site"]|)
+      assert has_element?(view, ~s|.nav-indicator[aria-hidden="true"]|)
+      assert has_element?(view, ~s|.nav-item-row a[aria-current="page"]|, "About")
+      assert has_element?(view, ~s|a[target="_blank"] .sr-only|, "opens in new tab")
+    end
+  end
+
+  describe "navigation accessibility" do
+    test "skip link targets a focusable main", %{conn: conn} do
+      {:ok, view, _html} = live(conn, ~p"/gallery")
+
+      assert has_element?(view, ~s|a.skip-link[href="#main"]|, "Skip to content")
+      assert has_element?(view, ~s|main#main[tabindex="-1"]|)
+    end
+
+    test "pagination has stable ids and an announcement", %{conn: conn} do
+      Cache.put("paintings", artworks("paintings", 20))
+      {:ok, view, _html} = live(conn, ~p"/gallery/paintings?page=2")
+
+      assert has_element?(view, ~s|nav.pagination[data-route-announce="Paintings, page 2 of 3"]|)
+      assert has_element?(view, "#pagination-prev")
+      assert has_element?(view, "#pagination-page-2")
+      assert has_element?(view, "#pagination-next")
+    end
+
+    test "artwork caption is announced and newer/older have stable ids", %{conn: conn} do
+      Cache.put("drawings", artworks("drawings", 3))
+      {:ok, view, _html} = live(conn, ~p"/gallery/drawings/drawings_2")
+
+      assert has_element?(view, "p[data-route-announce]", "drawings description 2")
+      assert has_element?(view, ~s|#artwork-newer[rel="prev"]|)
+      assert has_element?(view, ~s|#artwork-older[rel="next"]|)
+    end
+  end
+
   describe "legacy /gallery/p/:id" do
     test "redirects permanently to the new URL", %{conn: conn} do
       Cache.put("drawings", artworks("drawings", 1))

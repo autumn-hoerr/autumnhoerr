@@ -5,44 +5,65 @@ defmodule AutumnhoerrWeb.Components do
   use Phoenix.Component
   use Gettext, backend: AutumnhoerrWeb.Gettext
 
+  @external_links [
+    {"instagram", "https://www.instagram.com/autumn.hoerr.art/"},
+    {"bsky", "https://bsky.app/profile/autumnhoerr.com"},
+    {"github", "https://github.com/autumn-hoerr"},
+    {"linkedin", "https://www.linkedin.com/in/autumn-hoerr/"},
+    {"last.fm", "https://www.last.fm/user/refringence"}
+  ]
+
+  attr :nav_items, :list, required: true
+  attr :current_section, :string, default: nil
+  attr :current_subsection, :string, default: nil, doc: "id of the active child item, if any"
+  attr :current_path, :string, default: nil, doc: "path of the current page, for aria-current"
+
   def nav(assigns) do
+    assigns = assign(assigns, :external_links, @external_links)
+
     ~H"""
-    <nav class="nav">
+    <nav class="nav" aria-label={gettext("Site")}>
       <div>
         <h2 class="nav-label">{gettext("Here:")}</h2>
         <ol class="nav-list">
-          <li :for={item <- @nav_items} class="nav-item">
-            <.current_page_indicator :if={item.id == @current_section} />
-            <.link patch={item.link}>{item.label}</.link>
+          <li
+            :for={item <- @nav_items}
+            class={["nav-item", item[:children] && "nav-item-parent"]}
+          >
+            <div class="nav-item-row">
+              <.current_page_indicator :if={item.id == @current_section} />
+              <.link
+                navigate={item.link}
+                aria-current={aria_current(item.link, @current_path, item.id == @current_section)}
+              >
+                {item.label}
+              </.link>
+            </div>
+            <ol :if={item[:children]} class="nav-sublist">
+              <li :for={child <- item.children} class="nav-subitem">
+                <.link
+                  navigate={child.link}
+                  aria-current={
+                    aria_current(
+                      child.link,
+                      @current_path,
+                      item.id == @current_section and child.id == @current_subsection
+                    )
+                  }
+                >
+                  {child.label}
+                </.link>
+              </li>
+            </ol>
           </li>
         </ol>
       </div>
       <div>
-        <h2 class="nav-label">{gettext("There: ")}</h2>
+        <h2 class="nav-label">{gettext("There:")}</h2>
         <ol class="nav-list">
-          <li class="nav-item">
-            <a target="_blank" href="https://www.instagram.com/autumn.hoerr.art/">
-              {gettext("instagram")}
-            </a>
-          </li>
-          <li class="nav-item">
-            <a target="_blank" href="https://bsky.app/profile/autumnhoerr.com">
-              {gettext("bsky")}
-            </a>
-          </li>
-          <li class="nav-item">
-            <a target="_blank" href="https://github.com/autumn-hoerr">
-              {gettext("github")}
-            </a>
-          </li>
-          <li class="nav-item">
-            <a target="_blank" href="https://www.linkedin.com/in/autumn-hoerr/">
-              {gettext("linkedin")}
-            </a>
-          </li>
-          <li class="nav-item">
-            <a target="_blank" href="https://www.last.fm/user/refringence">
-              {gettext("last.fm")}
+          <li :for={{label, href} <- @external_links} class="nav-item">
+            <a target="_blank" href={href}>
+              {label}<span class="sr-only">{gettext("(opens in new tab)")}</span>
             </a>
           </li>
         </ol>
@@ -51,9 +72,25 @@ defmodule AutumnhoerrWeb.Components do
     """
   end
 
+  # "page" for a link to exactly this page, "true" for an ancestor of it
+  # (e.g. Gallery and Paintings while viewing a single painting)
+  defp aria_current(link, current_path, in_current_section?) do
+    cond do
+      current_path && String.trim_trailing(link, "/") == String.trim_trailing(current_path, "/") ->
+        "page"
+
+      in_current_section? ->
+        "true"
+
+      true ->
+        nil
+    end
+  end
+
+  # decorative; the current page is conveyed to assistive tech via aria-current
   defp current_page_indicator(assigns) do
     ~H"""
-    <span class="nav-indicator" title={gettext("Current Page: ")}>❧</span>
+    <span class="nav-indicator" aria-hidden="true">❧</span>
     """
   end
 

@@ -64,9 +64,18 @@ defmodule AutumnhoerrWeb.GalleryComponents do
       :if={@total_pages > 1}
       class="pagination"
       aria-label={gettext("%{title} pages", title: @collection.title)}
+      data-route-announce={
+        gettext("%{title}, page %{n} of %{total}",
+          title: @collection.title,
+          n: @page,
+          total: @total_pages
+        )
+      }
     >
+      <%!-- stable ids let app.js restore keyboard focus after a page change --%>
       <.link
         :if={@page > 1}
+        id="pagination-prev"
         class="pagination-step pagination-prev"
         patch={page_path(@collection, @page - 1)}
         rel="prev"
@@ -80,6 +89,7 @@ defmodule AutumnhoerrWeb.GalleryComponents do
       <ol class="pagination-pages">
         <li :for={n <- 1..@total_pages}>
           <.link
+            id={"pagination-page-#{n}"}
             class="pagination-page"
             patch={page_path(@collection, n)}
             aria-current={n == @page && "page"}
@@ -91,6 +101,7 @@ defmodule AutumnhoerrWeb.GalleryComponents do
       </ol>
       <.link
         :if={@page < @total_pages}
+        id="pagination-next"
         class="pagination-step pagination-next"
         patch={page_path(@collection, @page + 1)}
         rel="next"

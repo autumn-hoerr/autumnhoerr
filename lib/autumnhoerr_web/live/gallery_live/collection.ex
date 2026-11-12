@@ -28,7 +28,12 @@ defmodule AutumnhoerrWeb.GalleryLive.Collection do
   def mount(%{"collection" => slug}, _session, socket) do
     case Gallery.get_collection(slug) do
       {:ok, collection} ->
-        {:ok, assign(socket, current_section: "gallery", collection: collection)}
+        {:ok,
+         assign(socket,
+           current_section: "gallery",
+           current_subsection: collection.slug,
+           collection: collection
+         )}
 
       :error ->
         raise AutumnhoerrWeb.NotFoundError, "no gallery collection #{inspect(slug)}"

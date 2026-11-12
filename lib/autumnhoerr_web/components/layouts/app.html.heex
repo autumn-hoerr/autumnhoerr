@@ -1,11 +1,17 @@
 <.flash_group flash={@flash} />
 <div class="page">
+  <a class="skip-link" href="#main">{gettext("Skip to content")}</a>
   <header class="site-header">
     <h1 class="nameheading">{gettext("Autumn Hoerr")}</h1>
   </header>
   <div class="content">
-    <.nav nav_items={@nav_items} current_section={@current_section} />
-    <main id="main" class={@current_section}>
+    <.nav
+      nav_items={@nav_items}
+      current_section={@current_section}
+      current_subsection={assigns[:current_subsection]}
+      current_path={assigns[:current_path]}
+    />
+    <main id="main" class={@current_section} tabindex="-1">
       {@inner_content}
     </main>
   </div>

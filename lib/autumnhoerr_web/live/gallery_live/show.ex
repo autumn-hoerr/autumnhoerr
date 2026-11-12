@@ -36,6 +36,7 @@ defmodule AutumnhoerrWeb.GalleryLive.Show do
         socket
         |> assign(
           collection: collection,
+          current_subsection: collection.slug,
           artwork: artwork,
           back_page: Gallery.page_for(artwork),
           prev: prev,
@@ -57,12 +58,23 @@ defmodule AutumnhoerrWeb.GalleryLive.Show do
         {gettext("Back to %{title}", title: @collection.title)}
       </.link>
       <img class="lg-img" alt={@artwork.alt} {image_attrs(@artwork, 1000)} />
-      <p>{caption(@artwork)}</p>
+      <%!-- announced to screen readers on Newer/Older --%>
+      <p data-route-announce>{caption(@artwork)}</p>
       <nav class="detail-nav" aria-label={gettext("More from %{title}", title: @collection.title)}>
-        <.link :if={@prev} patch={~p"/gallery/#{@collection.slug}/#{@prev.public_id}"} rel="prev">
+        <.link
+          :if={@prev}
+          id="artwork-newer"
+          patch={~p"/gallery/#{@collection.slug}/#{@prev.public_id}"}
+          rel="prev"
+        >
           {gettext("Newer")}
         </.link>
-        <.link :if={@next} patch={~p"/gallery/#{@collection.slug}/#{@next.public_id}"} rel="next">
+        <.link
+          :if={@next}
+          id="artwork-older"
+          patch={~p"/gallery/#{@collection.slug}/#{@next.public_id}"}
+          rel="next"
+        >
           {gettext("Older")}
         </.link>
       </nav>
