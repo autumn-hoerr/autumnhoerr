@@ -83,6 +83,12 @@ config :autumnhoerr, :gallery_collections, [
     title: "Paintings",
     blurb: nil,
     folder: "paintings"
+  },
+  %{
+    slug: "calligraphy",
+    title: "Calligraphy",
+    blurb: nil,
+    folder: "calligraphy"
   }
 ]
 
