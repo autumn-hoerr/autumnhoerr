@@ -61,7 +61,12 @@ defmodule AutumnhoerrWeb.GalleryLive.Index do
       </header>
       <p :if={collection.blurb}>{collection.blurb}</p>
       <div class="gallery-index">
-        <.gallery_item :for={artwork <- preview} artwork={artwork} />
+        <%!-- lazy, so the previews hidden on mobile aren't downloaded there --%>
+        <.gallery_item
+          :for={{artwork, idx} <- Enum.with_index(preview)}
+          artwork={artwork}
+          lazy={idx > 0}
+        />
       </div>
     </section>
     """

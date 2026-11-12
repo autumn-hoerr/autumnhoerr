@@ -200,6 +200,10 @@ p
     .gallery-item
         @media (min-width: $breakpoint-small)
             flex: 1 1 32%
+        // on mobile, show just the first image of each collection
+        @media (width < $breakpoint-small)
+            &:nth-child(n + 2)
+                display: none
 
 .collection-header
     display: flex
