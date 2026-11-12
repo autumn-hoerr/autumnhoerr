@@ -62,9 +62,34 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :autumnhoerr,
-  cloudinary_cloud_name: System.get_env("CLOUDEX_CLOUD_NAME"),
   lastfm_api_key: System.get_env("LASTFM_API_KEY"),
   lastfm_secret: System.get_env("LASTFM_SECRET")
+
+# Cloudinary credentials (cloud name, API key/secret) are read from the
+# environment in config/runtime.exs. In dev they can also come from
+# config/dev.override.exs.
+
+# Gallery collections, in the order they appear on /gallery.
+# `slug` is the URL segment; `folder` is the Cloudinary asset folder.
+config :autumnhoerr, :gallery_collections, [
+  %{
+    slug: "drawings",
+    title: "Drawings",
+    blurb: nil,
+    folder: "drawings"
+  },
+  %{
+    slug: "paintings",
+    title: "Paintings",
+    blurb: nil,
+    folder: "paintings"
+  }
+]
+
+config :autumnhoerr, Autumnhoerr.Gallery.Cache,
+  refresh_on_start: true,
+  refresh_interval: :timer.minutes(30),
+  retry_interval: :timer.minutes(1)
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

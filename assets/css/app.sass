@@ -118,7 +118,7 @@ a[target='_blank']::after
 .content
     @media(min-width: $breakpoint-small)
         display: grid
-        gap: 1rem
+        gap: 1.55rem
         grid-template-columns: 150px 1fr
 
 #main
@@ -143,8 +143,9 @@ p
     &::before
         content: "\27A3"
         display: inline-block
-        transform: rotate(180deg)
-        line-height: 20px
+        // mirror rather than rotate so the arrow stays on the text's baseline
+        transform: scaleX(-1)
+        margin-right: 0.25rem
 
 .about
     .portrait
@@ -165,6 +166,7 @@ p
     flex: 1 1 100%
     img
         max-width: 100%
+        height: auto
     @media (min-width: $breakpoint-small)
         flex: 1 1 49%
 
@@ -176,6 +178,115 @@ p
 
 .lg-img
     max-width: 100%
+    height: auto
 
 .gallery-desc
     font-size: var(--font-size-0)
+
+
+.collection-title
+    border-bottom: 1px solid hsl(from var(--key-color) h s l / 0.2)
+    padding-bottom: 0.33rem
+    margin-bottom: 1.33rem
+
+.collection-heading
+    font-weight: normal
+
+.backlink + .collection-title
+    margin-top: 1.33rem
+
+.collection-preview
+    margin-bottom: 2.66rem
+    .gallery-item
+        @media (min-width: $breakpoint-small)
+            flex: 1 1 32%
+
+.collection-header
+    display: flex
+    justify-content: space-between
+    align-items: baseline
+    gap: 1rem
+    h2
+        margin: 0
+
+.view-all
+    white-space: nowrap
+    &::after
+        content: " \27A3"
+
+$pagination-border: 1px solid hsl(from var(--key-color) h s l / 0.35)
+
+.pagination
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    align-items: center
+    gap: 0.75rem 1.33rem
+    margin-block: 2.66rem 1.33rem
+    font-size: var(--font-size-0)
+    letter-spacing: 0.04em
+    text-transform: uppercase
+
+.pagination-pages
+    display: flex
+    gap: 0.5rem
+    list-style: none
+    margin: 0
+    padding: 0
+
+.pagination-page,
+.pagination-step
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    min-block-size: 2.25rem
+    border: $pagination-border
+    transition: background-color 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out
+
+.pagination-page
+    min-inline-size: 2.25rem
+    font-variant-numeric: tabular-nums
+
+.pagination-step
+    gap: 0.4rem
+    padding-inline: 1rem
+
+// mirrored arrow on "Previous", matching the back link; decorative so it isn't announced
+.pagination-prev::before
+    content: "\27A3"
+    content: "\27A3" / ""
+    display: inline-block
+    transform: scaleX(-1)
+
+.pagination-next::after
+    content: "\27A3"
+    content: "\27A3" / ""
+
+a.pagination-page,
+a.pagination-step
+    &:hover
+        border-color: var(--key-color)
+        background-color: hsl(from var(--key-color) h s l / 0.12)
+    &:focus-visible
+        outline: 2px solid var(--foreground)
+        outline-offset: 3px
+
+// current page: filled and bold, so it isn't indicated by color alone
+.pagination-page[aria-current="page"]
+    border-color: var(--key-color)
+    background-color: var(--key-color)
+    color: var(--background)
+    font-weight: 600
+
+.pagination-step[aria-disabled="true"]
+    opacity: 0.35
+
+@media (forced-colors: active)
+    .pagination-page[aria-current="page"]
+        border: 2px solid CanvasText
+        background-color: Highlight
+        color: HighlightText
+
+.detail-nav
+    display: flex
+    justify-content: space-between

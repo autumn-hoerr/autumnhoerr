@@ -38,6 +38,7 @@ defmodule Autumnhoerr.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.2"},
       {:floki, ">= 0.30.0", only: :test},
+      {:lazy_html, ">= 0.1.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.9"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.5"},
@@ -51,7 +52,8 @@ defmodule Autumnhoerr.MixProject do
       {:dart_sass, "~> 0.7", runtime: Mix.env() == :dev},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:phoenix_page_meta, "~> 0.2"},
-      {:phoenix_press, "~> 0.2.0"}
+      {:phoenix_press, "~> 0.2.0"},
+      {:req, "~> 0.7"}
     ]
   end
 

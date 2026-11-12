@@ -20,6 +20,17 @@ if System.get_env("PHX_SERVER") do
   config :autumnhoerr, AutumnhoerrWeb.Endpoint, server: true
 end
 
+# Cloudinary credentials. Only override when set so that values from
+# config/*.override.exs (local dev) are kept.
+for {key, env_vars} <- [
+      cloudinary_cloud_name: ["CLOUDINARY_CLOUD_NAME", "CLOUDEX_CLOUD_NAME"],
+      cloudinary_api_key: ["CLOUDINARY_API_KEY"],
+      cloudinary_api_secret: ["CLOUDINARY_API_SECRET"]
+    ],
+    value = Enum.find_value(env_vars, &System.get_env/1) do
+  config :autumnhoerr, [{key, value}]
+end
+
 if config_env() == :prod do
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you

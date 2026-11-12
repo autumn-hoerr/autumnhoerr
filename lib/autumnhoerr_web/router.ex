@@ -17,11 +17,15 @@ defmodule AutumnhoerrWeb.Router do
   scope "/", AutumnhoerrWeb do
     pipe_through :browser
 
+    # legacy image URLs; must come before /gallery/:collection/:public_id
+    get "/gallery/p/:id", GalleryRedirectController, :show
+
     live_session :public, on_mount: AutumnhoerrWeb.SharedMount do
       live "/", HomeLive
       live "/about", AboutLive
-      live "/gallery", GalleryLive
-      live "/gallery/p/:id", GalleryLive
+      live "/gallery", GalleryLive.Index
+      live "/gallery/:collection", GalleryLive.Collection
+      live "/gallery/:collection/:public_id", GalleryLive.Show
     end
   end
 

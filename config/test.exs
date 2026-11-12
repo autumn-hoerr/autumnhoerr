@@ -22,3 +22,12 @@ config :phoenix, :plug_init_mode, :runtime
 # Enable helpful, but potentially expensive runtime checks
 config :phoenix_live_view,
   enable_expensive_runtime_checks: true
+
+# Never talk to Cloudinary from tests; stub with Req.Test instead.
+config :autumnhoerr,
+  cloudinary_cloud_name: "test-cloud",
+  cloudinary_api_key: "test-key",
+  cloudinary_api_secret: "test-secret",
+  cloudinary_req_options: [plug: {Req.Test, Autumnhoerr.Cloudinary.Client}]
+
+config :autumnhoerr, Autumnhoerr.Gallery.Cache, refresh_on_start: false

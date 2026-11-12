@@ -13,6 +13,8 @@ defmodule Autumnhoerr.Application do
       {Phoenix.PubSub, name: Autumnhoerr.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: Autumnhoerr.Finch},
+      # Caches gallery artworks from Cloudinary
+      Autumnhoerr.Gallery.Cache,
       # Start a worker by calling: Autumnhoerr.Worker.start_link(arg)
       # {Autumnhoerr.Worker, arg},
       # Start to serve requests, typically the last entry

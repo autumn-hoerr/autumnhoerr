@@ -8,9 +8,10 @@ defmodule AutumnhoerrWeb.Sitemap do
   add("/gallery", changefreq: :weekly, priority: 1.0)
   add("/about", changefreq: :monthly, priority: 0.5)
 
-  [gallery_data] = AutumnhoerrWeb.GalleryData.gallery_data()
-
-  for image <- gallery_data.items do
-    add("/gallery/p/#{image.id}", changefreq: :monthly, priority: 0.5)
+  # Collection pages come from config, so they're known at compile time.
+  # Individual images live in Cloudinary and are only known at runtime,
+  # so they aren't listed here.
+  for collection <- Application.compile_env(:autumnhoerr, :gallery_collections, []) do
+    add("/gallery/#{collection.slug}", changefreq: :weekly, priority: 0.9)
   end
 end
